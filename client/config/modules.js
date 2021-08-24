@@ -1,4 +1,4 @@
-'use strict';
+
 
 const fs = require('fs');
 const path = require('path');
@@ -61,13 +61,11 @@ function getWebpackAliases(options = {}) {
     return {};
   }
 
-  const baseUrlResolved = path.resolve(paths.appPath, baseUrl);
+  return {
+    src: paths.appSrc,
+    '@pages': paths.appPages
+  };
 
-  if (path.relative(paths.appPath, baseUrlResolved) === '') {
-    return {
-      src: paths.appSrc,
-    };
-  }
 }
 
 /**
@@ -119,7 +117,7 @@ function getModules() {
   }
 
   config = config || {};
-  const options = config.compilerOptions || {};
+  const options = config.compilerOptions || { baseUrl: paths.appSrc };
 
   const additionalModulePaths = getAdditionalModulePaths(options);
 

@@ -1,8 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
-import AuthPage from './pages/AuthPage/AuthPage';
+import AuthPage from '@pages/AuthPage/AuthPage';
 
-export default function routes() {
+/**
+ * @param {boolean} isAuthorized
+ * @return {JSX.Element}
+ */
+export default function routes(isAuthorized) {
   return (
     <Switch>
       <Route path="/auth" exact>
